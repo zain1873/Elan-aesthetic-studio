@@ -1,0 +1,9 @@
+a:hover {
+  color: var(--theme-color) !important;
+}
+.overlay-custom {
+  background-color: color-mix(in oklab, var(--color-black) 70%, transparent);
+}
+.overlay-f {
+  background-color: #000000e3;
+}
