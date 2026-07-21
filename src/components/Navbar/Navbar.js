@@ -133,7 +133,7 @@ export default function Navbar() {
       <header className="navbar">
         <div className="navbar-inner">
           <a href="/" aria-label="NY Aesthetics — Home" className="logo">
-            <img src="/Logo.png" alt="NY Aesthetics" className="logo-img" />
+            <img src="images/Logo.png" alt="NY Aesthetics" className="logo-img" />
           </a>
 
           <div className="navbar-controls">
