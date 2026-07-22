@@ -1,0 +1,192 @@
+/* services-section.css */
+
+.services-section {
+  position: relative;
+  background-color: #0a0a0a;
+  overflow: hidden;
+}
+
+/* Unsplash background image, dimmed so the black theme stays dominant */
+.services-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.85) 40%, #0a0a0a 100%),
+    url("https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.services-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Header */
+.services-eyebrow {
+  color: #9fc3dc;
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #9fc3dc;
+  display: inline-block;
+}
+
+.services-title {
+  font-size: 52px;
+  line-height: 1.15;
+  margin-top: 10px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.title-white {
+  color: #ffffff;
+}
+
+.title-gray {
+  color: #7a7a7a;
+}
+
+.services-logo-mark {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-size: 34px;
+  font-weight: 800;
+  font-style: italic;
+  color: #a9cbe0;
+  letter-spacing: 0.02em;
+}
+
+/* Cards */
+.service-card {
+  position: relative;
+  background-color: #141414;
+  border-radius: 4px;
+  padding: 32px;
+  overflow: hidden;
+  transition: background-color 0.2s ease;
+  min-height: 190px;
+  display: flex;
+  align-items: center;
+}
+
+.service-card:hover {
+  background-color: #b9d4e6;
+}
+
+/* Icon (left) + text (right), side by side */
+.service-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
+.service-card-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Logo image that slides in from the right on hover */
+.service-card-logo {
+  position: absolute;
+  top: 78%;
+  right: -34px;
+  transform: translate(120%, -50%);
+  height: 66%;
+  width: auto;
+  max-width: 45%;
+  object-fit: cover;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.service-card:hover .service-card-logo {
+  transform: translate(0, -50%);
+  opacity: 1;
+}
+
+.service-icon-circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.service-icon {
+  width: 26px;
+  height: 26px;
+  color: #0a0a0a;
+}
+
+.service-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  transition: color 0.2s ease;
+}
+
+.service-card-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #a3a3a3;
+  transition: color 0.2s ease;
+}
+
+.service-card:hover .service-card-title {
+  color: #0d1b2a;
+}
+
+.service-card:hover .service-card-desc {
+  color: #1f2f3d;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .services-title {
+    font-size: 26px;
+  }
+
+  .services-logo-mark {
+    font-size: 22px;
+    top: -4px;
+  }
+
+  .service-card {
+    padding: 24px;
+    min-height: unset;
+  }
+
+  .service-card-content {
+    gap: 14px;
+  }
+
+  .service-icon-circle {
+    width: 46px;
+    height: 46px;
+  }
+
+  .service-card-title {
+    font-size: 20px;
+  }
+
+  .service-card-logo {
+    max-width: 35%;
+  }
+}

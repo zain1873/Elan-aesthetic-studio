@@ -1,0 +1,43 @@
+/* stats-section.css
+   Light blue stats bar with serif numerals and outline icons,
+   matching the reference design. */
+
+.stats-section {
+  background-color: #b9d4e6;
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  color: #111111;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.stat-value {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 40px;
+  line-height: 1;
+  color: #111111;
+}
+
+.stat-label {
+  color: #111111;
+  letter-spacing: 0.03em;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  .stat-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+}

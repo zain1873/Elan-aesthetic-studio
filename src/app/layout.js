@@ -1,7 +1,10 @@
-import { Outfit } from "next/font/google";
+import { Marcellus, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import AboutSection from "@/components/About/About";
+import StatsSection from "@/components/Stats/Stats";
+import ServicesSection from "@/components/Services/Service";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -22,6 +25,9 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
+        <AboutSection/>
+        <ServicesSection/>
+        <StatsSection/>
         <Footer />
       </body>
     </html>

@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Skin Treatments", href: "/services/skin-treatments" },
-  { label: "Thread Lifts", href: "/services/thread-lifts" },
+  { label: "Thread Treatment", href: "/services/thread-lifts" },
   { label: "Anti-Aging Treatments", href: "/services/anti-aging-treatments" },
   { label: "Exosome Therapy", href: "/services/exosome-therapy" },
   { label: "Medicated Facials", href: "/services/medicated-facials" },
@@ -133,7 +133,7 @@ export default function Navbar() {
       <header className="navbar">
         <div className="navbar-inner">
           <a href="/" aria-label="NY Aesthetics — Home" className="logo">
-            <img src="/images/logo.png" alt="NY Aesthetics" className="logo-img" />
+            <img src="/images/logo-service.png" alt="NY Aesthetics" className="logo-img" />
           </a>
 
           <div className="navbar-controls">

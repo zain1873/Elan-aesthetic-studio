@@ -33,9 +33,6 @@
   transition: opacity 0.25s ease;
 }
 
-.logo:hover {
-  opacity: 0.85;
-}
 .logo {
   width: 100px;
   height: 100px;

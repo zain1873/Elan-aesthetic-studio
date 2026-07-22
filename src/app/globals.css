@@ -1,9 +1,15 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   /* --foreground: #171717; */
   --theme-color: #aecbe8;
+}
+
+.theme-title {
+  font-size: 52px;
+  font-family: "Marcellus", serif;
 }
 
 body {
