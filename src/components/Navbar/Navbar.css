@@ -7,6 +7,15 @@
   width: 100%;
   background-color: #000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transform: translateY(0);
+  transition: transform 0.35s ease;
+  will-change: transform;
+}
+
+/* Slides the navbar up out of view on scroll-down, slides back down
+   on scroll-up. Toggled from Navbar.jsx via the `hideNavbar` state. */
+.navbar.navbar-hidden {
+  transform: translateY(-100%);
 }
 
 .navbar-inner {
@@ -34,7 +43,6 @@
 }
 
 .logo {
-  width: 100px;
   height: 100px;
 }
 
@@ -414,6 +422,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .menu-button:hover .menu-label-track { animation: none; }
+  .navbar {
+    transition: none !important;
+  }
   .panel-left,
   .panel-right,
   .nav-list li,

@@ -5,18 +5,19 @@
 .stats-section {
   background-color: #b9d4e6;
 }
-
+.stats-grid  {
+  place-items: center;
+}
 .stat-icon {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   color: #111111;
   flex-shrink: 0;
   overflow: visible;
 }
 
 .stat-value {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 40px;
+  font-size: 52px;
   line-height: 1;
   color: #111111;
 }
@@ -29,8 +30,8 @@
 /* Responsive tweaks */
 @media (max-width: 767px) {
   .stat-icon {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 
   .stat-value {

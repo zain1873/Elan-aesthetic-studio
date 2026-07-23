@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="flex flex-col items-center gap-14 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
           {/* Call Us circle */}
           <a
-            href="tel:03250005222"
+            href="tel:+923044546711"
             className="group flex h-56 w-56 shrink-0 flex-col items-center justify-center rounded-full bg-sky-100 transition-colors duration-300 hover:bg-sky-200 sm:h-64 sm:w-64 md:h-72 md:w-72 lg:h-80 lg:w-80"
           >
             <svg
@@ -106,18 +106,18 @@ export default function Footer() {
                 <ul className="flex flex-col gap-2">
                   <li>
                     <a
-                      href="tel:03250005222"
+                      href="tel:+923044546711"
                       className="text-base font-medium text-white/90 transition-colors"
                     >
-                      0325-0005222
+                      0304-4546711
                     </a>
                   </li>
                   <li>
                     <a
-                      href="mailto:nyaesthetics25@gmail.com"
+                      href="mailto:info@elanaestheticstudio.pk"
                       className="break-all text-base font-medium text-white/90 transition-colors"
                     >
-                      NYAESTHETICS25@GMAIL.COM
+                      INFO@ELANAESTHETICSTUDIO.PK
                     </a>
                   </li>
                 </ul>

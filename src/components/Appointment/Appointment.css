@@ -1,0 +1,199 @@
+.appointment {
+  background-color: #000000;
+  padding: 48px 16px;
+}
+
+.appointment__header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.appointment__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 12px 0;
+}
+
+.appointment__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #a9d3ec;
+  display: inline-block;
+}
+
+.appointment__title {
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #ffffff;
+  font-size: 28px;
+  margin: 0;
+}
+
+.appointment__title--muted {
+  display: block;
+  color: #9ca3af;
+}
+
+.appointment__body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.appointment__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.appointment__image-el {
+  object-fit: cover;
+}
+
+.appointment__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.appointment__row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.appointment__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.appointment__field label {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.appointment__required {
+  color: #e0475c;
+}
+
+.appointment__field input,
+.appointment__field select,
+.appointment__field textarea {
+  background-color: #1a1a1a;
+  border: 1px solid #3a3a3a;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 2px;
+  outline: none;
+  font-family: inherit;
+}
+
+.appointment__field input::placeholder,
+.appointment__field textarea::placeholder {
+  color: #7a7a7a;
+}
+
+.appointment__field input:focus,
+.appointment__field select:focus,
+.appointment__field textarea:focus {
+  border-color: #4fb3e8;
+}
+
+.appointment__field select {
+  background-color: #e5e5e5;
+  color: #000000;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.appointment__field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.appointment__subheading {
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 8px 0 0 0;
+}
+
+.appointment__submit {
+  align-self: flex-start;
+  background-color: var(--theme-color);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  padding: 12px 24px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+    border: 1px solid transparent;
+
+}
+
+.appointment__submit:hover {
+  background-color: #000;
+  border: 1px solid var(--theme-color);
+  color: var(--theme-color);
+}
+
+/* Tablet and up: image + form side by side */
+@media (min-width: 768px) {
+  .appointment {
+    padding: 64px 32px;
+  }
+
+  .appointment__title {
+    font-size: 36px;
+  }
+
+  .appointment__body {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .appointment__image {
+    flex: 1;
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 460px;
+  }
+
+  .appointment__form {
+    flex: 1;
+  }
+
+  .appointment__row {
+    flex-direction: row;
+  }
+
+  .appointment__submit {
+    align-self: flex-start;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .appointment__title {
+    font-size: 48px;
+  }
+}

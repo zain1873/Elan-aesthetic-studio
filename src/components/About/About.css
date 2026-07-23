@@ -1,4 +1,3 @@
-
 .about-tab {
   background: none;
   border: none;
@@ -69,12 +68,90 @@
   letter-spacing: 0.03em;
 }
 
+
+
+
+.about-logo {
+  margin-top: -16%;
+  height: 500px;
+  z-index: 10;
+}
+.about-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about-header  {
+  margin-bottom: 20px;
+}
+
+.about-heading {
+  text-align: left;
+  padding: 40px 0;
+}
+.about-heading .upper-title {
+  justify-content: start;
+  margin-bottom: 10px;
+}
+
+.about-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 12px 0;
+}
+
+.about-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #a9d3ec;
+  display: inline-block;
+}
+.about-section  {
+  padding: 0;
+}
+
+.about-title {
+  font-family: Georgia, "Times New Roman", serif;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #ffffff;
+  font-size: 32px;
+  margin: 0;
+}
+
+.about-title--muted {
+  display: block;
+  color: #9ca3af;
+}
+
+@media (min-width: 768px) {
+  /* .about-logo-img {
+    width: 200px;
+  } */
+
+  .about-title {
+    font-size: 44px;
+  }
+}
+
 /* Responsive tweaks */
 @media (max-width: 767px) {
   .about-badge {
     width: 110px;
     height: 110px;
     padding: 12px;
+  }
+  .about-grid {
+    padding: 20px;
+  }
+  .about-heading {
+    padding: 20px;
   }
 
   .about-badge-number {
@@ -83,5 +160,21 @@
 
   .about-badge-label {
     font-size: 10px;
+  }
+  .about-logo {
+    display: none;
+  }
+
+  .about-logo {
+    height: 220px;
+    margin-top: 0;
+  }
+}
+
+/* Tablet: logo still large but not as tall as desktop */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .about-logo {
+    height: 340px;
+    margin-top: -8%;
   }
 }

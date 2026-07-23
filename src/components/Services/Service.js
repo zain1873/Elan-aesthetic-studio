@@ -1,3 +1,5 @@
+"use client";
+import { useEffect, useRef } from "react";
 import "./Service.css";
 
 // --- Custom inline icons matching the reference design (no external package needed) ---
@@ -107,16 +109,74 @@ const SERVICES = [
 ];
 
 export default function ServicesSection() {
-  return (
-    <section className="services-section">
-      <div className="services-bg-overlay" />
+  const sectionRef = useRef(null);
+  const bgRef = useRef(null);
+  const contentRef = useRef(null);
 
-      <div className="services-inner max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
+  // Speeds: how fast each layer moves relative to normal scroll.
+  // 0 = fixed in place, 1 = scrolls at normal speed.
+  const BG_SPEED = 0.35; // background drifts slowly
+  const CONTENT_SPEED = 0.08; // text/cards drift very slightly for depth
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const bg = bgRef.current;
+    const content = contentRef.current;
+    if (!section || !bg) return;
+
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+
+      // Only animate while the section is anywhere near the viewport
+      if (rect.bottom < -200 || rect.top > viewportH + 200) return;
+
+      // Distance scrolled through the section, centered around 0
+      // when the section is centered in the viewport.
+      const progress = viewportH - rect.top; // 0 at section entering bottom, grows as user scrolls
+
+      const bgOffset = (progress - viewportH / 2) * BG_SPEED;
+      bg.style.transform = `translate3d(0, ${bgOffset}px, 0)`;
+
+      if (content) {
+        const contentOffset = (progress - viewportH / 2) * CONTENT_SPEED;
+        content.style.transform = `translate3d(0, ${contentOffset}px, 0)`;
+      }
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <section className="services-section" ref={sectionRef}>
+      <div className="services-bg-overlay" ref={bgRef} />
+
+      <div
+        className="services-inner max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24"
+        ref={contentRef}
+      >
         {/* Header */}
         <div className="services-header relative">
           <div className="services-eyebrow flex items-center gap-2">
             <span className="eyebrow-dot" />
-            <span className="uppercase text-xs md:text-sm tracking-widest font-medium">
+            <span className="uppercase text-xs md:text-sm tracking-widest font-medium upper-title">
               Core Services
             </span>
           </div>

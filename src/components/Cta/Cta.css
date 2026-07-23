@@ -1,0 +1,163 @@
+.cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.cta__bg {
+  object-fit: cover;
+  object-position: center;
+  z-index: -2;
+}
+
+.cta__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.cta__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  padding: 80px 16px;
+}
+
+.cta__title {
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #ffffff;
+  font-size: 32px;
+  margin: 0;
+  font-family: "Marcellus", serif;
+}
+
+.cta__title--accent {
+  display: block;
+  color: #a9d3ec;
+}
+
+.cta__button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  padding: 16px 24px;
+  transition: background-color 0.2s ease;
+}
+
+.cta__button:hover {
+  background-color: #dceefb;
+}
+
+.cta__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 40px 16px;
+}
+
+.cta__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0;
+}
+
+.cta__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #a9d3ec;
+  display: inline-block;
+}
+
+.cta__footer-title {
+  font-family: "Marcellus", serif;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #ffffff;
+  font-size: 24px;
+  margin: 0;
+}
+
+.cta__footer-title--muted {
+  display: block;
+  color: #9ca3af;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .cta {
+    min-height: 700px;
+  }
+
+  .cta__content {
+    gap: 32px;
+    padding: 112px 16px;
+  }
+
+  .cta__title {
+    font-size: 48px;
+    font-family: "Marcellus", serif;
+  }
+
+  .cta__button {
+    font-size: 14px;
+    padding: 20px 32px;
+  }
+
+  .cta__footer {
+    padding: 56px 16px;
+  }
+
+  .cta__eyebrow {
+    font-size: 14px;
+  }
+
+  .cta__footer-title {
+    font-size: 36px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .cta {
+    min-height: 820px;
+  }
+
+  .cta__title {
+    font-size: 100px;
+    font-family: "Marcellus", serif;
+  }
+
+  .cta__footer-title {
+    font-size: 48px;
+  }
+}

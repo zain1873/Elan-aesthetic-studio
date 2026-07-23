@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { X, Menu } from "lucide-react";
+import { X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import "./Navbar.css";
 
@@ -28,11 +28,18 @@ const CONTENT_EXIT_TIME = 920;
 // Panel slide-back duration must match .panel-left, .panel-right { transition: transform 0.7s cubic-bezier(...) }
 const PANEL_SLIDE_TIME = 700;
 
+// Hide-on-scroll-down / show-on-scroll-up tuning
+const SCROLL_HIDE_THRESHOLD = 80; // px scrolled down before navbar hides
+const SCROLL_TOP_OFFSET = 100; // navbar always shown within this distance of the top
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [phase, setPhase] = useState("closed"); // closed | mounting | entering | entered | exiting | sliding-out
+  const [hideNavbar, setHideNavbar] = useState(false);
   const timer = useRef(null);
   const raf = useRef(null);
+  const lastScrollY = useRef(0);
+  const scrollTicking = useRef(false);
   const pathname = usePathname();
 
   function openMenu() {
@@ -124,21 +131,58 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [showOverlay]);
 
+  // Hide navbar on scroll down, reveal it on scroll up.
+  // Paused while the menu overlay is open so it never disappears mid-interaction.
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    function updateNavbarVisibility() {
+      scrollTicking.current = false;
+      const currentScrollY = window.scrollY;
+
+      if (showOverlay) {
+        setHideNavbar(false);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY <= SCROLL_TOP_OFFSET) {
+        setHideNavbar(false);
+      } else if (currentScrollY > lastScrollY.current + 5) {
+        setHideNavbar(true); // scrolling down
+      } else if (currentScrollY < lastScrollY.current - 5) {
+        setHideNavbar(false); // scrolling up
+      }
+
+      lastScrollY.current = currentScrollY;
+    }
+
+    function onScroll() {
+      if (!scrollTicking.current) {
+        scrollTicking.current = true;
+        requestAnimationFrame(updateNavbarVisibility);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [showOverlay]);
+
   let stateClass = "";
   if (contentVisible) stateClass = "visible";
   if (contentExiting) stateClass = "exiting";
 
   return (
     <>
-      <header className="navbar">
+      <header className={`navbar ${hideNavbar ? "navbar-hidden" : ""}`}>
         <div className="navbar-inner">
           <a href="/" aria-label="NY Aesthetics — Home" className="logo">
-            <img src="/images/logo-service.png" alt="NY Aesthetics" className="logo-img" />
+            <img src="/images/nav-logo.png" alt="NY Aesthetics" className="logo-img" />
           </a>
 
           <div className="navbar-controls">
-            <a href="tel:03250005222" className="call-button">
-              CALL: 0325-0005222
+            <a href="tel:+923044546711" className="call-button">
+              CALL: 0304-4546711
             </a>
 
             <button
@@ -150,7 +194,7 @@ export default function Navbar() {
               className="menu-button"
             >
               <span className="menu-icon" aria-hidden="true">
-                <Menu size={22} strokeWidth={1.5} color="#0a0a0f" />
+                <img src="/images/hamburger.svg" alt="" className="hamburger-icon" />
               </span>
               <span className="menu-label" aria-hidden="true">
                 <span className="menu-label-track">
@@ -193,11 +237,11 @@ export default function Navbar() {
               <div className={`panel-right-content ${stateClass}`}>
                 <div className="info-block">
                   <h3 className="info-title">Brief us</h3>
-                  <a href="mailto:Nyaesthetic25@gmail.com" className="info-link">
-                    Nyaesthetic25@gmail.com
+                  <a href="mailto:info@elanaestheticstudio.pk" className="info-link">
+                    info@elanaestheticstudio.pk
                   </a>
-                  <a href="tel:03250005222" className="info-link">
-                    Phone. 0325-0005222
+                  <a href="tel:+923044546711" className="info-link">
+                    Phone. 0304-4546711
                   </a>
                 </div>
 

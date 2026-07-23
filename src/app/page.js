@@ -1,16 +1,69 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 
 const BACKGROUND_IMAGE =
   "https://images.unsplash.com/photo-1758448500688-3ababa93fd67?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
 export default function Home() {
+  // Parallax: background moves slowest, text moves a bit more, for a layered depth effect
+  const sectionRef = useRef(null);
+  const [bgOffsetY, setBgOffsetY] = useState(0);
+  const [textOffsetY, setTextOffsetY] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const updateParallax = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      const elementCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+      const distance = elementCenter - viewportCenter;
+
+      const bgSpeed = 0.06;
+      const textSpeed = 0.12;
+      setBgOffsetY(distance * bgSpeed);
+      setTextOffsetY(distance * textSpeed);
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       {/* ===== Hero / Banner ===== */}
-      <section className="relative w-full overflow-hidden">
+      <section
+        ref={sectionRef}
+        className="relative w-full overflow-hidden"
+      >
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${BACKGROUND_IMAGE})` }}
+          style={{
+            backgroundImage: `url(${BACKGROUND_IMAGE})`,
+            transform: `scale(1.15) translateY(${bgOffsetY}px)`,
+          }}
           aria-hidden="true"
         />
 
@@ -27,7 +80,10 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="banner relative z-10 mx-auto max-w-7xl px-6 py-16 sm:px-10 sm:py-20 md:px-14 md:py-24 lg:py-28">
+        <div
+          className="banner relative z-10 mx-auto max-w-7xl px-6 py-16 sm:px-10 sm:py-20 md:px-14 md:py-24 lg:py-28"
+          style={{ transform: `translateY(${textOffsetY}px)` }}
+        >
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white sm:mb-6 sm:text-sm md:text-base">
             A Leading Aesthetic Clinic in Lahore
           </p>
@@ -43,7 +99,6 @@ export default function Home() {
           </h1>
         </div>
       </section>
-
     </>
   );
 }

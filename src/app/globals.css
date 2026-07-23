@@ -2,7 +2,7 @@
 
 
 :root {
-  --background: #ffffff;
+  --background: #000;
   /* --foreground: #171717; */
   --theme-color: #aecbe8;
 }
@@ -10,6 +10,8 @@
 .theme-title {
   font-size: 52px;
   font-family: "Marcellus", serif;
+  line-height: 1;
+  color: #fff;
 }
 
 body {
@@ -19,7 +21,20 @@ body {
 }
 .theme-color {
   color: #aecbe8;
-
+}
+.title-gray {
+  color: #7a7a7a;
+}
+.upper-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: "Outfit", sans-serif;;
 }
 
 .banner {

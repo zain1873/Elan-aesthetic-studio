@@ -101,6 +101,28 @@ export default function AboutSection() {
 
   return (
     <section className="about-section bg-black py-16 md:py-24 px-6 md:px-12">
+      {/* Top row: logo (left) + eyebrow/heading (right) */}
+      <div className="about-header max-w-7xl mx-auto flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <div className="about-logo">
+          <img
+            src="/images/logo-service.png"
+            alt="NY Aesthetics logo"
+            className="about-logo-img"
+          />
+        </div>
+
+        <div className="about-heading">
+          <p className="upper-title">
+            <span className="about-dot" />
+            About NY Aesthetics
+          </p>
+          <h2 className="about-title">
+            Enhancing Your
+            <span className="about-title--muted">Natural Beauty</span>
+          </h2>
+        </div>
+      </div>
+
       <div className="about-grid max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Left side: nav tabs + text */}
         <div className="about-left flex flex-col gap-8">
