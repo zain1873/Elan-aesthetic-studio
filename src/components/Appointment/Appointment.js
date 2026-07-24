@@ -1,7 +1,48 @@
+"use client";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import "./Appointment.css";
 
 export default function Appointment() {
+  const imageRef = useRef(null);
+
+  // Parallax: move the appointment image up/down as the page scrolls
+  // (same math as About.jsx: distance of element center from viewport center * speed)
+  useEffect(() => {
+    const IMAGE_SPEED = 0.15;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const el = imageRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const elementCenter = rect.top + rect.height / 2;
+      const viewportCenter = viewportHeight / 2;
+      const distance = elementCenter - viewportCenter;
+
+      el.style.transform = `translateY(${distance * IMAGE_SPEED}px)`;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <section className="appointment">
       {/* <div className="appointment__header">
@@ -18,6 +59,7 @@ export default function Appointment() {
       <div className="appointment__body">
         <div className="appointment__image">
           <Image
+            ref={imageRef}
             src="/images/appointment-img.webp"
             alt="Treatment room"
             fill

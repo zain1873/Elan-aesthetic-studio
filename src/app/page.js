@@ -1,15 +1,23 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import AboutSection from "@/components/About/About";
+import StatsSection from "@/components/Stats/Stats";
+import ServicesSection from "@/components/Services/Service";
+import Cta from "@/components/Cta/Cta";
+import Appointment from "@/components/Appointment/Appointment";
+import Testimonials from "@/components/Testimonial/Testimonial";
+import BlogSection from "@/components/Blog/Blog";
+import TeamSection from "@/components/Team/Team";
 
 const BACKGROUND_IMAGE =
   "https://images.unsplash.com/photo-1758448500688-3ababa93fd67?fm=jpg&q=80&w=2400&auto=format&fit=crop";
 
 export default function Home() {
-  // Parallax: background moves slowest, text moves a bit more, for a layered depth effect
+  // Parallax: use refs + direct DOM manipulation to avoid React re-renders
   const sectionRef = useRef(null);
-  const [bgOffsetY, setBgOffsetY] = useState(0);
-  const [textOffsetY, setTextOffsetY] = useState(0);
+  const bgRef = useRef(null);
+  const textRef = useRef(null);
 
   useEffect(() => {
     let ticking = false;
@@ -27,8 +35,14 @@ export default function Home() {
 
       const bgSpeed = 0.06;
       const textSpeed = 0.12;
-      setBgOffsetY(distance * bgSpeed);
-      setTextOffsetY(distance * textSpeed);
+
+      // Direct DOM manipulation — no React re-renders
+      if (bgRef.current) {
+        bgRef.current.style.transform = `scale(1.15) translateY(${distance * bgSpeed}px)`;
+      }
+      if (textRef.current) {
+        textRef.current.style.transform = `translateY(${distance * textSpeed}px)`;
+      }
 
       ticking = false;
     };
@@ -59,10 +73,11 @@ export default function Home() {
       >
         {/* Background image */}
         <div
+          ref={bgRef}
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `url(${BACKGROUND_IMAGE})`,
-            transform: `scale(1.15) translateY(${bgOffsetY}px)`,
+            transform: `scale(1.15) translateY(0px)`,
           }}
           aria-hidden="true"
         />
@@ -81,8 +96,9 @@ export default function Home() {
 
         {/* Content */}
         <div
+          ref={textRef}
           className="banner relative z-10 mx-auto max-w-7xl px-6 py-16 sm:px-10 sm:py-20 md:px-14 md:py-24 lg:py-28"
-          style={{ transform: `translateY(${textOffsetY}px)` }}
+          style={{ transform: `translateY(0px)` }}
         >
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white sm:mb-6 sm:text-sm md:text-base">
             A Leading Aesthetic Clinic in Lahore
@@ -99,6 +115,16 @@ export default function Home() {
           </h1>
         </div>
       </section>
+
+      {/* Homepage sections — only rendered on "/" */}
+      <AboutSection />
+      <ServicesSection />
+      <StatsSection />
+      <TeamSection />
+      <Cta />
+      <Appointment />
+      <Testimonials />
+      <BlogSection />
     </>
   );
 }

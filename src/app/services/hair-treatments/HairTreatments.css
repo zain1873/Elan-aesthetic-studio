@@ -1,0 +1,910 @@
+/* ─── Hair Treatments Page Styles ─── */
+
+/* ─── Hero Banner ─── */
+.hair-hero {
+  position: relative;
+  height: 80vh;
+  min-height: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.hair-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+.hair-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  z-index: 1;
+}
+
+.hair-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 24px;
+}
+
+.hair-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--theme-color, #aecbe8);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.hair-hero-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--theme-color, #aecbe8);
+}
+
+.hair-hero-title {
+  font-family: "Marcellus", serif;
+  font-size: 72px;
+  line-height: 1.05;
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hair-hero-subtitle {
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 650px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Section Common ─── */
+.hair-section {
+  position: relative;
+  background-color: #0a0a0a;
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.hair-section-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hair-section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hair-section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--theme-color, #aecbe8);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.hair-section-eyebrow .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--theme-color, #aecbe8);
+}
+
+.hair-section-title {
+  font-family: "Marcellus", serif;
+  font-size: 48px;
+  line-height: 1.15;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.hair-section-title .title-gray {
+  color: #7a7a7a;
+}
+
+.hair-section-desc {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #a3a3a3;
+  max-width: 700px;
+  margin: 16px auto 0;
+}
+
+/* ─── Treatment Cards ─── */
+.treatment-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 70px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.treatment-card:first-of-type {
+  padding-top: 0;
+}
+
+.treatment-card:last-of-type {
+  border-bottom: none;
+}
+
+.treatment-card.reverse {
+  direction: rtl;
+}
+
+.treatment-card.reverse > * {
+  direction: ltr;
+}
+
+.treatment-image-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  /* background-color: #1a1a1a; */
+}
+
+/* Oversized + absolutely positioned so scroll-parallax translateY never
+   exposes gaps at the top/bottom of the (overflow: hidden) wrapper.
+   Hover-zoom is preserved via --img-scale, combined with the parallax
+   translateY driven by --parallax-y (set from JS on scroll). */
+.treatment-image {
+  width: 100%;
+  height: 130%;
+  position: absolute;
+  top: -15%;
+  left: 0;
+  object-fit: cover;
+  transform: translateY(var(--parallax-y, 0px)) scale(var(--img-scale, 1));
+  transition: transform 0.7s ease;
+}
+
+.treatment-image-wrapper:hover .treatment-image {
+  --img-scale: 1.06;
+}
+
+.treatment-image-overlay {
+  position: absolute;
+  inset: 0;
+  /* background: linear-gradient(
+    135deg,
+    rgba(174, 203, 232, 0.12) 0%,
+    transparent 50%
+  ); */
+  pointer-events: none;
+}
+
+.treatment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.treatment-icon-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--theme-color, #aecbe8), #8bb5d8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(174, 203, 232, 0.3);
+}
+
+.treatment-icon {
+  width: 28px;
+  height: 28px;
+  color: #0a0a0a;
+}
+
+.treatment-card-title {
+  font-family: "Marcellus", serif;
+  font-size: 34px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.treatment-card-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #a3a3a3;
+}
+
+.treatment-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.treatment-feature-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 100px;
+  background-color: rgba(174, 203, 232, 0.08);
+  border: 1px solid rgba(174, 203, 232, 0.18);
+  color: var(--theme-color, #aecbe8);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.treatment-feature-tag .check {
+  width: 14px;
+  height: 14px;
+}
+
+.treatment-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 13px 30px;
+  background: linear-gradient(135deg, var(--theme-color, #aecbe8), #8bb5d8);
+  color: #0a0a0a;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  text-decoration: none;
+}
+
+.treatment-cta:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(174, 203, 232, 0.3);
+}
+
+.treatment-cta svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.treatment-cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* ─── Why Choose Us ─── */
+.why-choose-section {
+  background: linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+  padding: 100px 0;
+}
+
+.why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.why-choose-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--theme-color, #aecbe8), #8bb5d8);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.why-choose-card:hover::before {
+  transform: scaleX(1);
+}
+
+.why-choose-card:hover {
+  border-color: rgba(174, 203, 232, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.why-choose-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: rgba(174, 203, 232, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-choose-icon svg {
+  width: 26px;
+  height: 26px;
+  color: var(--theme-color, #aecbe8);
+}
+
+.why-choose-card-title {
+  font-family: "Marcellus", serif;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.why-choose-card-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #a3a3a3;
+}
+
+/* ─── How It Works ─── */
+.how-it-works-section {
+  background-color: #050505;
+  padding: 100px 0;
+}
+
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.how-it-works-grid::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--theme-color, #aecbe8), transparent);
+  opacity: 0.3;
+}
+
+.how-it-works-step {
+  text-align: center;
+  padding: 40px 30px;
+  position: relative;
+}
+
+.how-it-works-step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--theme-color, #aecbe8), #8bb5d8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Marcellus", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin: 0 auto 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.how-it-works-step-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  color: var(--theme-color, #aecbe8);
+}
+
+.how-it-works-step-title {
+  font-family: "Marcellus", serif;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.how-it-works-step-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #a3a3a3;
+}
+
+/* ─── Benefits Section ─── */
+.benefits-section {
+  background-color: #0a0a0a;
+  padding: 100px 0;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 50px;
+}
+
+.benefit-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  background: rgba(174, 203, 232, 0.05);
+  border-color: rgba(174, 203, 232, 0.15);
+  transform: translateX(4px);
+}
+
+.benefit-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 12px;
+  background: rgba(174, 203, 232, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefit-icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--theme-color, #aecbe8);
+}
+
+.benefit-content h4 {
+  font-family: "Marcellus", serif;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.benefit-content p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #a3a3a3;
+}
+
+/* ─── FAQ Section ─── */
+.faq-section {
+  background: linear-gradient(180deg, #111 0%, #0a0a0a 100%);
+  padding: 100px 0;
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active {
+  border-color: rgba(174, 203, 232, 0.3);
+  background: rgba(174, 203, 232, 0.04);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  font-family: "Outfit", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+  color: var(--theme-color, #aecbe8);
+}
+
+.faq-question svg {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  color: var(--theme-color, #aecbe8);
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question svg {
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+  padding: 0 24px 20px;
+}
+
+.faq-answer p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #a3a3a3;
+}
+
+.faq-image-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-color: #1a1a1a;
+}
+
+/* Same oversized/absolute approach as .treatment-image, combined with
+   the existing hover-zoom via --img-scale. */
+.faq-image {
+  width: 100%;
+  height: 130%;
+  position: absolute;
+  top: -15%;
+  left: 0;
+  object-fit: cover;
+  transform: translateY(var(--parallax-y, 0px)) scale(var(--img-scale, 1));
+  transition: transform 0.7s ease;
+}
+
+.faq-image-wrapper:hover .faq-image {
+  --img-scale: 1.05;
+}
+
+.faq-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(174, 203, 232, 0.08) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+}
+
+/* ─── Scroll Animations ─── */
+.scroll-animate {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-animate-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-animate-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-animate-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-animate-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 0.6s; }
+
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1023px) {
+  .hair-hero-title {
+    font-size: 48px;
+  }
+
+  .hair-section-title {
+    font-size: 36px;
+  }
+
+  .treatment-card {
+    gap: 40px;
+    padding: 50px 0;
+  }
+
+  .treatment-card-title {
+    font-size: 28px;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .how-it-works-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .how-it-works-grid::before {
+    display: none;
+  }
+
+  .faq-layout {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hair-hero {
+    height: 65vh;
+    min-height: 420px;
+  }
+
+  .hair-hero-title {
+    font-size: 34px;
+  }
+
+  .hair-hero-subtitle {
+    font-size: 15px;
+  }
+
+  .hair-section {
+    padding: 60px 0;
+  }
+
+  .hair-section-title {
+    font-size: 28px;
+  }
+
+  .hair-section-desc {
+    font-size: 15px;
+  }
+
+  .hair-section-header {
+    margin-bottom: 40px;
+  }
+
+  .treatment-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 40px 0;
+  }
+
+  .treatment-card.reverse {
+    direction: ltr;
+  }
+
+  .treatment-image-wrapper {
+    aspect-ratio: 16 / 10;
+  }
+
+  .treatment-card-title {
+    font-size: 24px;
+  }
+
+  .treatment-icon-circle {
+    width: 50px;
+    height: 50px;
+  }
+
+  .treatment-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .treatment-features {
+    gap: 8px;
+  }
+
+  .treatment-feature-tag {
+    font-size: 12px;
+    padding: 5px 12px;
+  }
+
+  .treatment-cta {
+    padding: 11px 24px;
+    font-size: 13px;
+  }
+
+  .why-choose-section,
+  .how-it-works-section,
+  .benefits-section,
+  .faq-section {
+    padding: 60px 0;
+  }
+
+  .why-choose-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 30px;
+  }
+
+  .why-choose-card {
+    padding: 30px 24px;
+  }
+
+  .how-it-works-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 30px;
+  }
+
+  .how-it-works-step {
+    padding: 30px 24px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .benefit-card {
+    padding: 24px;
+  }
+
+  .faq-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .faq-image-wrapper {
+    aspect-ratio: 16 / 10;
+    order: -1;
+  }
+
+  .faq-question {
+    font-size: 15px;
+    padding: 16px 20px;
+  }
+
+  .faq-item.active .faq-answer {
+    padding: 0 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hair-hero-title {
+    font-size: 28px;
+  }
+
+  .hair-hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .hair-section-title {
+    font-size: 24px;
+  }
+
+  .treatment-card-title {
+    font-size: 20px;
+  }
+
+  .treatment-card-desc {
+    font-size: 15px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hair-hero-bg,
+  .treatment-image,
+  .treatment-cta,
+  .scroll-animate,
+  .scroll-animate-right,
+  .scroll-animate-up,
+  .scroll-animate-scale,
+  .stagger-children > *,
+  .why-choose-card,
+  .benefit-card,
+  .faq-image {
+    transform: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}

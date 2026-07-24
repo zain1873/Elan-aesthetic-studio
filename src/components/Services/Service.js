@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import "./Service.css";
 
-// --- Custom inline icons matching the reference design (no external package needed) ---
 function FaceIcon(props) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" {...props}>
@@ -112,11 +111,14 @@ export default function ServicesSection() {
   const sectionRef = useRef(null);
   const bgRef = useRef(null);
   const contentRef = useRef(null);
+  // Holds each card's logo image element, keyed by service id
+  const imageRefs = useRef({});
 
   // Speeds: how fast each layer moves relative to normal scroll.
   // 0 = fixed in place, 1 = scrolls at normal speed.
   const BG_SPEED = 0.35; // background drifts slowly
   const CONTENT_SPEED = 0.08; // text/cards drift very slightly for depth
+  const IMAGE_SPEED = 0.15; // per-card image parallax speed
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -136,7 +138,7 @@ export default function ServicesSection() {
 
       // Distance scrolled through the section, centered around 0
       // when the section is centered in the viewport.
-      const progress = viewportH - rect.top; // 0 at section entering bottom, grows as user scrolls
+      const progress = viewportH - rect.top;
 
       const bgOffset = (progress - viewportH / 2) * BG_SPEED;
       bg.style.transform = `translate3d(0, ${bgOffset}px, 0)`;
@@ -145,6 +147,18 @@ export default function ServicesSection() {
         const contentOffset = (progress - viewportH / 2) * CONTENT_SPEED;
         content.style.transform = `translate3d(0, ${contentOffset}px, 0)`;
       }
+
+      // Parallax for each individual service card's image
+      Object.values(imageRefs.current).forEach((el) => {
+        if (!el) return;
+        const imgRect = el.getBoundingClientRect();
+        const elementCenter = imgRect.top + imgRect.height / 2;
+        const viewportCenter = viewportH / 2;
+        const distance = elementCenter - viewportCenter;
+        // Set a CSS variable instead of overwriting transform directly,
+        // so the hover slide-in transform in CSS keeps working
+        el.style.setProperty("--parallax-offset", `${distance * IMAGE_SPEED}px`);
+      });
     };
 
     const onScroll = () => {
@@ -192,6 +206,7 @@ export default function ServicesSection() {
           {SERVICES.map(({ id, icon: Icon, title, description }) => (
             <div key={id} className="service-card group">
               <img
+                ref={(el) => (imageRefs.current[id] = el)}
                 src="/images/logo-service.png"
                 alt=""
                 aria-hidden="true"

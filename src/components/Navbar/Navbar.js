@@ -8,14 +8,14 @@ import "./Navbar.css";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Skin Treatments", href: "/services/skin-treatments" },
+  // { label: "Skin Treatments", href: "/services/skin-treatments" },
   { label: "Thread Treatment", href: "/services/thread-lifts" },
   { label: "Anti-Aging Treatments", href: "/services/anti-aging-treatments" },
-  { label: "Exosome Therapy", href: "/services/exosome-therapy" },
+  // { label: "Exosome Therapy", href: "/services/exosome-therapy" },
   { label: "Medicated Facials", href: "/services/medicated-facials" },
-  { label: "Dental Aesthetic Treatments", href: "/services/dental-aesthetic-treatments" },
+  // { label: "Dental Aesthetic Treatments", href: "/services/dental-aesthetic-treatments" },
   { label: "Hair Treatments", href: "/services/hair-treatments" },
-  { label: "Fat Reduction Treatments", href: "/services/fat-reduction-treatments" },
+  // { label: "Fat Reduction Treatments", href: "/services/fat-reduction-treatments" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];

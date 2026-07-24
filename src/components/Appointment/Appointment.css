@@ -1,5 +1,5 @@
 .appointment {
-  background-color: #000000;
+  /* background-color: #000000; */
   padding: 48px 16px;
 }
 
@@ -50,15 +50,24 @@
   margin: 0 auto;
 }
 
+/* Image wrapper — clips the image so parallax movement never shows gaps.
+   (Was previously defined twice in this file; merged into one rule here.) */
 .appointment__image {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  height: 600px;
 }
 
+/* Next.js <Image fill> injects its own inline position/height/width/inset styles,
+   which normally beat plain CSS. !important is required here so the parallax
+   JS (translateY set on this element in Appointment.jsx) has room to move
+   the image without exposing empty edges. */
 .appointment__image-el {
   object-fit: cover;
+  height: 130% !important;
+  top: -15% !important;
 }
 
 .appointment__form {
@@ -195,5 +204,12 @@
 @media (min-width: 1024px) {
   .appointment__title {
     font-size: 48px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .appointment__image-el {
+    transform: none !important;
   }
 }

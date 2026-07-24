@@ -105,7 +105,7 @@
   position: absolute;
   top: 78%;
   right: -34px;
-  transform: translate(120%, -50%);
+  transform: translate(120%, calc(-50% + var(--parallax-offset, 0px)));
   height: 66%;
   width: auto;
   max-width: 45%;
@@ -117,7 +117,7 @@
 }
 
 .service-card:hover .service-card-logo {
-  transform: translate(0, -50%);
+  transform: translate(0, calc(-50% + var(--parallax-offset, 0px)));
   opacity: 1;
 }
 
@@ -205,5 +205,8 @@
   .services-bg-overlay,
   .services-inner {
     transform: none !important;
+  }
+  .service-card-logo {
+    --parallax-offset: 0px !important;
   }
 }
